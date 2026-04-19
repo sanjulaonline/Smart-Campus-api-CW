@@ -60,26 +60,28 @@ Business rules implemented:
 ## Sample curl Commands
 Use these in order so linked resources exist.
 
+PowerShell note: use curl.exe (not curl) to avoid the Invoke-WebRequest alias.
+
 1) Discovery endpoint
-curl -X GET http://localhost:8080/api/v1
+curl.exe -X GET http://localhost:8080/api/v1
 
 2) Create a room
-curl -X POST http://localhost:8080/api/v1/rooms -H "Content-Type: application/json" -d "{\"id\":\"LIB-301\",\"name\":\"Library Quiet Study\",\"capacity\":120}"
+curl.exe -X POST http://localhost:8080/api/v1/rooms -H "Content-Type: application/json" -d '{"id":"LIB-301","name":"Library Quiet Study","capacity":120}'
 
 3) List all rooms
-curl -X GET http://localhost:8080/api/v1/rooms
+curl.exe -X GET http://localhost:8080/api/v1/rooms
 
 4) Create a sensor linked to the room
-curl -X POST http://localhost:8080/api/v1/sensors -H "Content-Type: application/json" -d "{\"id\":\"CO2-001\",\"type\":\"CO2\",\"status\":\"ACTIVE\",\"currentValue\":0.0,\"roomId\":\"LIB-301\"}"
+curl.exe -X POST http://localhost:8080/api/v1/sensors -H "Content-Type: application/json" -d '{"id":"CO2-001","type":"CO2","status":"ACTIVE","currentValue":0.0,"roomId":"LIB-301"}'
 
 5) Filter sensors by type
-curl -X GET "http://localhost:8080/api/v1/sensors?type=CO2"
+curl.exe -X GET "http://localhost:8080/api/v1/sensors?type=CO2"
 
 6) Add a reading for a sensor
-curl -X POST http://localhost:8080/api/v1/sensors/CO2-001/readings -H "Content-Type: application/json" -d "{\"value\":438.7}"
+curl.exe -X POST http://localhost:8080/api/v1/sensors/CO2-001/readings -H "Content-Type: application/json" -d '{"value":438.7}'
 
 7) Get reading history for a sensor
-curl -X GET http://localhost:8080/api/v1/sensors/CO2-001/readings
+curl.exe -X GET http://localhost:8080/api/v1/sensors/CO2-001/readings
 
 ## Expected Status Codes
 - 200 OK for successful GET and delete confirmation
