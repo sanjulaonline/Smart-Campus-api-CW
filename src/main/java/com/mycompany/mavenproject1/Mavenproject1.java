@@ -1,0 +1,25 @@
+package com.mycompany.mavenproject1;
+
+import java.io.IOException;
+import java.net.URI;
+import org.glassfish.grizzly.http.server.HttpServer;
+import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
+import org.glassfish.jersey.server.ResourceConfig;
+
+public class Mavenproject1 {
+
+    private static final URI BASE_URI = URI.create("http://0.0.0.0:8080/");
+
+    public static HttpServer startServer() {
+        ResourceConfig config = ResourceConfig.forApplication(new ApiApplication());
+        return GrizzlyHttpServerFactory.createHttpServer(BASE_URI, config);
+    }
+
+    public static void main(String[] args) throws IOException {
+        HttpServer server = startServer();
+        System.out.println("Smart Campus API started at http://localhost:8080/api/v1");
+        System.out.println("Press ENTER to stop the server...");
+        System.in.read();
+        server.shutdownNow();
+    }
+}
