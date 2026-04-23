@@ -60,7 +60,9 @@ public class SensorReadingResource {
         }
 
         store.addReading(sensorId, reading);
-        sensor.setCurrentValue(reading.getValue());
+        synchronized (sensor) {
+            sensor.setCurrentValue(reading.getValue());
+        }
 
         return Response.created(uriInfo.getAbsolutePathBuilder().path(reading.getId()).build())
                 .entity(reading)

@@ -10,11 +10,15 @@ import org.glassfish.jersey.server.ResourceConfig;
 
 public class Mavenproject1 {
 
-    private static final URI BASE_URI = URI.create("http://0.0.0.0:8080/");
-
+    private static final String DEFAULT_URI = "http://0.0.0.0:8080/";
+    
+    private static URI getBaseUri() {
+        String envUri = System.getenv("BASE_URI");
+        return URI.create(envUri != null && !envUri.isBlank() ? envUri : DEFAULT_URI);
+    }
     public static HttpServer startServer() {
         ResourceConfig config = ResourceConfig.forApplication(new ApiApplication());
-        return GrizzlyHttpServerFactory.createHttpServer(BASE_URI, config);
+        return GrizzlyHttpServerFactory.createHttpServer(getBaseUri(), config);
     }
 
     public static void main(String[] args) throws IOException {
