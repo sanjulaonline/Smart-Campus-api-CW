@@ -2,12 +2,12 @@ package com.mycompany.mavenproject1.mapper;
 
 import com.mycompany.mavenproject1.exception.LinkedResourceNotFoundException;
 import com.mycompany.mavenproject1.model.ApiError;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriInfo;
-import javax.ws.rs.ext.ExceptionMapper;
-import javax.ws.rs.ext.Provider;
+import jakarta.ws.rs.core.Context;
+import jakarta.ws.rs.core.MediaType;
+import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.UriInfo;
+import jakarta.ws.rs.ext.ExceptionMapper;
+import jakarta.ws.rs.ext.Provider;
 
 @Provider
 public class LinkedResourceNotFoundExceptionMapper implements ExceptionMapper<LinkedResourceNotFoundException> {
@@ -35,4 +35,3 @@ public class LinkedResourceNotFoundExceptionMapper implements ExceptionMapper<Li
         return uriInfo == null ? "" : "/" + uriInfo.getPath();
     }
 }
-
